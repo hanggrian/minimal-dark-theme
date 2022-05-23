@@ -1,0 +1,61 @@
+body {
+	background-color: #212121;
+	color: #bdbdbd;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #fafafa;
+}
+
+h2 {
+	color: #fafafa;
+}
+
+h3, h4, h5, h6 {
+	color: #fafafa;
+}
+
+a small {
+	color: #9e9e9e;
+}
+
+a:hover small {
+	color: #cfcfcf;
+}
+
+p small {
+	color: #9e9e9e;
+}
+
+blockquote {
+	border-left: 4px solid #616161;
+}
+
+code, pre {
+	color: #f5f5f5;
+	background-color: #424242;
+}
+
+pre {
+	background: #424242;
+}
+
+th, td {
+	border-bottom: 1px solid #616161;
+}
+
+dt {
+	color: #e0e0e0;
+}
+
+th {
+	color: #e0e0e0;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
