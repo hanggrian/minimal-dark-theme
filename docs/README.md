@@ -5,13 +5,6 @@ Minimal
 
 [Demo the Theme](http://hendraanggrian.com/minimal)
 
-This is the raw HTML and styles that are used for the *minimal* theme on [GitHub Pages](http://pages.github.com/).
+Raw HTML and styles for [Minimal Theme](https://github.com/orderedlist/minimal) on [GitHub Pages](http://pages.github.com). This fork specializes in dark mode and switching theme on the fly.
 
-Syntax highlighting is provided on GitHub Pages by [Pygments](http://pygments.org).
-
-Note
-----
-
-This fork specializes in dark mode and switching theme on the fly.
-
-There is also a `generate_index.sh` script that creates the `index.html` from GitHub repository.
+There is also `generate.sh` that automatically pulls data from GitHub, head to [Generator User's Guide](GENERATOR_GUIDE.md).
