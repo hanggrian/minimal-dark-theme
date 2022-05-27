@@ -24,7 +24,7 @@ Output directory, cannot be empty.
 
 ### -m MARKDOWN
 
-Relative path to the markdown file under the repository. This flag is optional, leaving it empty will use repository's default README file.
+Relative path to the markdown file under the repository. This flag is optional, leaving it empty will result in using repository's default README file.
 
 ### --clearoutput
 
