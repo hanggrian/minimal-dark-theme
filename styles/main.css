@@ -21,6 +21,8 @@
   --button-text1-hover: #707070; /* grey_500_dark */
   --button-text2: #212121; /* grey_900 */
   --button-text2-hover: #000000; /* grey_900 */
+
+  --theme-toggle-image: url('../images/dark_mode.svg');
 }
 
 :root.theme-dark {
@@ -39,6 +41,8 @@
   --border-bold: #616161; /* grey_700 */
 
   --table-border: #616161; /* grey_700 */
+
+  --theme-toggle-image: url('../images/light_mode.svg');
 }
 
 body {
@@ -252,6 +256,7 @@ footer button {
   border: 1px solid #e0e0e0;
   width: 40px;
   color: var(--button-text2);
+  justify-content: center;
 }
 
 footer button:hover {
@@ -260,6 +265,10 @@ footer button:hover {
 
 footer button:active {
   background-color: var(--button-background-active);
+}
+
+#theme-toggle {
+  content: var(--theme-toggle-image);
 }
 
 @media print, screen and (max-width: 960px) {
