@@ -11,7 +11,7 @@ function isDarkMode() {
 
 function toggleDarkMode() {
   document.getElementsByTagName('html')[0].classList.toggle('theme-dark')
-  const currentDarkMode = !isDarkMode()
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(currentDarkMode))
-  return currentDarkMode
+  const flippedDarkMode = !isDarkMode()
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(flippedDarkMode))
+  return flippedDarkMode
 }
