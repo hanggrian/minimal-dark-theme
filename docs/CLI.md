@@ -1,7 +1,7 @@
-Generator
----------
+Minimal Theme CLI
+=================
 
-Instead of manually writing HTML file, `generate.sh` pulls data from GitHub and automatically creates HTML file along with CSS and JS directories.
+Instead of manually writing HTML file, `deploy_page.sh` pulls data from GitHub and automatically creates HTML file along with CSS and JS directories. When running the command, parent directory of `cli` must be unchanged.
 
 Requirements
 ------------

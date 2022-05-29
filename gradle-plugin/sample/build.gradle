@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath files('minimal-theme-0.1.jar')
+        classpath 'org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.5'
+        classpath 'org.commonmark:commonmark-ext-gfm-tables:0.18.1'
+    }
+}
+
+group 'com.example'
+version '1.0'
+
+apply plugin: 'com.hendraanggrian.minimal-theme'
+
+tasks {
+    deployPage {
+        authorName.set('Hendra Anggrian')
+        authorUrl.set('https://github.com/hendraanggrian')
+        projectDescription.set('This is an awesome example')
+        projectUrl.set("https://github.com/hendraanggrian/minimal")
+        markdownFile.set(file('../../docs/README.md'))
+        headerButtons {
+            button("Download", "Sources", "")
+            button("Fork on", "GitHub", "")
+            button("View", "Javadoc", "")
+        }
+    }
+}

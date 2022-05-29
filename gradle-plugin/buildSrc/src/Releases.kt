@@ -1,0 +1,5 @@
+const val RELEASE_GROUP = "com.hendraanggrian"
+const val RELEASE_ARTIFACT = "minimal-theme"
+const val RELEASE_VERSION = "0.1"
+const val RELEASE_DESCRIPTION = "Switchable dark mode minimalistic theme for GitHub Pages"
+const val RELEASE_GITHUB = "https://github.com/hendraanggrian/$RELEASE_ARTIFACT"
