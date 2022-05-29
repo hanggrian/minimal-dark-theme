@@ -1,7 +1,3 @@
-[![version](https://img.shields.io/maven-metadata/v?label=plugin-portal&metadataUrl=https%3A%2F%2Fplugins.gradle.org%2Fm2%2Fcom%2Fhendraanggrian%2Fminimal-theme%2Fcom.hendraanggrian.minimal-theme.gradle.plugin%2Fmaven-metadata.xml)](https://plugins.gradle.org/plugin/com.hendraanggrian.minimal-theme)
-[![build](https://img.shields.io/travis/com/hendraanggrian/minimal-theme)](https://travis-ci.com/github/hendraanggrian/minimal-theme)
-[![analysis](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081)](https://ktlint.github.io)
-
 Minimal Theme Gradle Plugin
 ===========================
 
@@ -14,7 +10,7 @@ Using plugins DSL:
 
 ```gradle
 plugins {
-    id('com.hendraanggrian.minimal-theme') version "$version"
+    id('com.hendraanggrian.website.minimal') version "$version"
 }
 ```
 
@@ -26,29 +22,45 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath("com.hendraanggrian:minimal-theme:$version")
+        classpath("com.hendraanggrian:website:minimal:$version")
     }
 }
 
-apply plugin: 'com.hendraanggrian.minimal-theme'
+apply plugin: 'com.hendraanggrian.website.minimal'
 ```
 
 Usage
 -----
 
-Modify `deployPage` task accordingly. Visit [DeployPageTask.kt](../gradle-plugin/minimal-theme/src/com/hendraanggrian/minimal/DeployPageTask.kt) for full configuration details.
+Visit [DeployResourcesSpec.kt](../gradle-plugin/minimal/src/com/hendraanggrian/website/minimal/DeployResourcesSpec.kt) and [DeployWebpagesSpec.kt](../gradle-plugin/minimal/src/com/hendraanggrian/website/minimal/DeployWebpagesSpec.kt) for full configuration details.
 
 ```gradle
 plugins {
-    id('com.hendraanggrian.minimal-theme')
+    id('com.hendraanggrian.website.minimal')
 }
 
-tasks.deployPage {
+minimal {
     authorName.set('Hendra Anggrian')
     projectName.set('My Project')
     projectDescription.set('A very awesome project')
     headerButtons {
         button("Download", "Sources", "https://github.com/hendraanggrian/my-project/zipball/main")
     }
+}
+```
+
+### With [Application](https://docs.gradle.org/current/userguide/application_plugin.html) plugin
+
+When application plugin is applied, application name will be used as project name convention.
+
+```gradle
+plugins {
+    id('application')
+    id('com.hendraanggrian.website.minimal')
+}
+
+application {
+    applicationName.set('My Project')
+    mainClassName.set('com.hendraanggrian.myproject.MainClass')
 }
 ```

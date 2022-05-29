@@ -1,2 +1,2 @@
-include("minimal-theme")
+include("minimal")
 include("sample")

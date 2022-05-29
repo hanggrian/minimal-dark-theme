@@ -3,28 +3,36 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath files('minimal-theme-0.1.jar')
+        classpath files('minimal-0.1.jar')
         classpath 'org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.5'
         classpath 'org.commonmark:commonmark-ext-gfm-tables:0.18.1'
+        classpath 'org.ajoberstar.git-publish:gradle-git-publish:4.1.0'
     }
 }
 
 group 'com.example'
 version '1.0'
 
-apply plugin: 'com.hendraanggrian.minimal-theme'
+apply plugin: 'com.hendraanggrian.website.minimal'
+apply plugin: 'org.ajoberstar.git-publish'
 
-tasks {
-    deployPage {
-        authorName.set('Hendra Anggrian')
-        authorUrl.set('https://github.com/hendraanggrian')
-        projectDescription.set('This is an awesome example')
-        projectUrl.set("https://github.com/hendraanggrian/minimal")
-        markdownFile.set(file('../../docs/README.md'))
-        headerButtons {
-            button("Download", "Sources", "")
-            button("Fork on", "GitHub", "")
-            button("View", "Javadoc", "")
-        }
+minimal {
+    authorName.set('Hendra Anggrian')
+    authorUrl.set('https://github.com/hendraanggrian')
+    projectDescription.set('This is an awesome example')
+    projectUrl.set("https://github.com/hendraanggrian/minimal")
+    markdownFile.set(file('../../docs/README.md'))
+    headerButtons {
+        button('Read', 'Documentation', 'documentation.html')
     }
+    webpage('documentation.html', '<p>Welcome to project documentation.</p>')
 }
+
+gitPublish {
+    repoUri.set('git@github.com:hendraanggrian/minimal-theme.git')
+    branch.set('gh-pages')
+    contents.from('src', 'build/website')
+}
+
+tasks.register('clean') { delete(buildDir) }
+tasks.gitPublishCopy { dependsOn(deployWebpages) }

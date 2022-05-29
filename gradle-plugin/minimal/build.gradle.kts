@@ -20,10 +20,10 @@ sourceSets {
 }
 
 gradlePlugin {
-    plugins.register("minimalThemePlugin") {
-        id = "$RELEASE_GROUP.minimal-theme"
-        implementationClass = "$RELEASE_GROUP.minimal.MinimalThemePlugin"
-        displayName = "Minimal Theme Plugin"
+    plugins.register("minimalPlugin") {
+        id = "$RELEASE_GROUP.minimal"
+        implementationClass = "$RELEASE_GROUP.minimal.MinimalPlugin"
+        displayName = "Minimal Website Plugin"
         description = RELEASE_DESCRIPTION
     }
     testSourceSets(sourceSets.test.get())

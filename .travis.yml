@@ -4,6 +4,7 @@ dist: trusty
 jdk: oraclejdk11
 
 script:
+  - /cli/deploy_page.sh -i 'hendraanggrian/minimal-theme' -o "$TRAVIS_BUILD_DIR/test-output"
   - cd "gradle-plugin"
   - ./gradlew build --info
 

@@ -5,26 +5,26 @@ readonly RED=[91m
 readonly GREEN=[92m
 readonly YELLOW=[93m
 
-error() { echo; echo "$RED$1$END"; echo; exit 1; }
+fail() { echo; echo "$RED$1$END"; echo; exit 1; }
 
 help() {
   echo
-  echo "Usage: generate_index.sh [options]"
+  echo 'Usage: deploy_page.sh [options]'
   echo
-  echo "Options:"
-  echo "  -h            Show this help message"
-  echo "  -i            Input GitHub username and repository, separated by slash"
-  echo "  -o            Output directory"
-  echo "  -m            Markdown path relative to that repository, or default README if left empty"
-  echo "  --clearoutput Clear the output directory before generating"
+  echo 'Options:'
+  echo '  -h            Show this help message'
+  echo '  -i            Input GitHub username and repository, separated by slash'
+  echo '  -o            Output directory'
+  echo '  -m            Markdown path relative to that repository, or default README if left empty'
+  echo '  --clearoutput Clear the output directory before generating'
   echo
   exit 1
 }
 
-if ! command -v jq &> /dev/null; then error "jq is not installed"; fi
-if ! command -v pandoc &> /dev/null; then error "pandoc is not installed"; fi
+if ! command -v jq &> /dev/null; then fail 'jq is not installed'; fi
+if ! command -v pandoc &> /dev/null; then fail 'pandoc is not installed'; fi
 
-readonly ROOT_DIR="$(cd `dirname "$0"` && pwd)/.."
+readonly ROOT_DIR="$(cd "$(dirname "$0")" && pwd)/.."
 readonly IMAGES_DIR="$ROOT_DIR/images"
 readonly SCRIPTS_DIR="$ROOT_DIR/scripts"
 readonly STYLES_DIR="$ROOT_DIR/styles"
@@ -36,39 +36,39 @@ clear_output=false
 for arg in "$@"; do
   shift
   case "$arg" in
-    --help) set -- "$@" "-h";;
-    --clearoutput) clear_output=true;;
+    --help) set -- "$@" '-h' ;;
+    --clearoutput) clear_output=true ;;
     *) set -- "$@" "$arg" ;;
   esac
 done
 
-while getopts "i:o:m:h" flag; do
+while getopts 'i:o:m:h' flag; do
   case "$flag" in
-    i) input_github="${OPTARG}" ;;
-    o) output_directory="${OPTARG}" ;;
-    m) markdown_path="${OPTARG}" ;;
+    i) input_github="$OPTARG" ;;
+    o) output_directory="$OPTARG" ;;
+    m) markdown_path="$OPTARG" ;;
     h | *) help ;;
   esac
 done
 
-if [[ -z "$input_github" ]]; then error "Missing input"; fi
-if [[ -z "$output_directory" ]]; then error "Missing output directory"; fi
+if [[ -z "$input_github" ]]; then fail 'Missing input'; fi
+if [[ -z "$output_directory" ]]; then fail 'Missing output directory'; fi
 
 github_username="$(echo "$input_github" | cut -d '/' -f 1)"
 github_repository="$(echo "$input_github" | cut -d '/' -f 2)"
 
 echo
-echo "fetching..."
+echo 'fetching...'
 
-github_fullname=$(curl -s "https://api.github.com/users/$github_username" | jq ".name" | tr -d '"')
+github_fullname=$(curl -s "https://api.github.com/users/$github_username" | jq '.name' | tr -d '"')
 if [[ "$github_fullname" == null ]]
   then
-    error "GitHub user not found"
+    fail 'GitHub user not found'
   else
     echo "Full name: $GREEN$github_fullname$END"
 fi
 
-github_description=$(curl -s "https://api.github.com/repos/$github_username/$github_repository" | jq ".description" | tr -d '"')
+github_description=$(curl -s "https://api.github.com/repos/$github_username/$github_repository" | jq '.description' | tr -d '"')
 if [[ "$github_description" == null ]]
   then
     echo "Description: ${YELLOW}not found$END"
@@ -78,7 +78,7 @@ fi
 
 if [[ -z "$markdown_path" ]]
   then
-    markdown_path=$(curl -s "https://api.github.com/repos/$github_username/$github_repository/readme" | jq ".download_url" | tr -d '"')
+    markdown_path=$(curl -s "https://api.github.com/repos/$github_username/$github_repository/readme" | jq '.download_url' | tr -d '"')
     echo "Markdown: ${YELLOW}default README$END"
   else
     markdown_path="https://raw.githubusercontent.com/$github_username/$github_repository/$markdown_path"
@@ -87,7 +87,7 @@ fi
 markdown_content=$(pandoc -f gfm -t html $markdown_path)
 
 echo
-echo "writing..."
+echo 'writing...'
 
 if [[ "$clear_output" = true ]]; then
   rm -r "$output_directory"/*
@@ -142,6 +142,6 @@ echo
 echo "</html>"
 } > "$output_directory/index.html"
 
-echo "done"
+echo 'done'
 echo
 exit 0

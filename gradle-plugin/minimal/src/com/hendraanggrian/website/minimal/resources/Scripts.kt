@@ -1,4 +1,4 @@
-package com.hendraanggrian.minimal
+package com.hendraanggrian.website.minimal.resources
 
 val scale_fix_js = """
     var metas = document.getElementsByTagName('meta')
