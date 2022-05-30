@@ -1,4 +1,4 @@
-const val RELEASE_GROUP = "com.hendraanggrian.website"
+const val RELEASE_GROUP = "com.hendraanggrian.pages"
 const val RELEASE_ARTIFACT = "minimal"
 const val RELEASE_VERSION = "0.1"
 const val RELEASE_DESCRIPTION = "Static webpage with toggleable dark mode for GitHub pages"

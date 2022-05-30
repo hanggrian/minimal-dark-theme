@@ -1,4 +1,4 @@
-package com.hendraanggrian.website.minimal
+package com.hendraanggrian.pages.minimal
 
 import kotlinx.html.a
 import kotlinx.html.body
@@ -35,6 +35,7 @@ import javax.xml.transform.dom.DOMSource
 import javax.xml.transform.stream.StreamResult
 
 internal class WebpageWriter(
+    private val icon: String?,
     private val authorName: String?,
     private val authorUrl: String?,
     private val projectName: String,
@@ -61,8 +62,12 @@ internal class WebpageWriter(
     fun write(fileName: String, rawSection: String) {
         val document = createHTMLDocument().html {
             head {
+                meta(charset = "utf-8")
                 meta(content = "chrome=1") { httpEquiv = "X-UA-Compatible" }
                 title(authorName?.let { "$projectName by $it" } ?: projectName)
+                if (icon != null) {
+                    link(rel = "icon", href = icon)
+                }
                 link(rel = "stylesheet", href = "styles/main.css")
                 link(rel = "stylesheet", href = "styles/pygment_trac.css")
                 meta(name = "viewport", content = "width=device-width")

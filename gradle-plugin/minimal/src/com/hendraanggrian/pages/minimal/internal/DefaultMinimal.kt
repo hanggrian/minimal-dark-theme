@@ -1,6 +1,6 @@
-package com.hendraanggrian.website.minimal.internal
+package com.hendraanggrian.pages.minimal.internal
 
-import com.hendraanggrian.website.minimal.Minimal
+import com.hendraanggrian.pages.minimal.Minimal
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.file.DirectoryProperty
@@ -14,8 +14,6 @@ import org.gradle.kotlin.dsl.property
 
 open class DefaultMinimal(project: Project) : Minimal {
 
-    override val logo: Property<String> = project.objects.property()
-
     override val accentColor: Property<String> = project.objects.property<String>()
         .convention("#448aff")
 
@@ -24,6 +22,8 @@ open class DefaultMinimal(project: Project) : Minimal {
 
     override val accentDarkHoverColor: Property<String> = project.objects.property<String>()
         .convention("#83b9ff")
+
+    override val icon: Property<String> = project.objects.property()
 
     override val authorName: Property<String> = project.objects.property()
 
@@ -36,10 +36,16 @@ open class DefaultMinimal(project: Project) : Minimal {
 
     override val projectUrl: Property<String> = project.objects.property()
 
+    override val headerButtons: ListProperty<Minimal.HeaderButton> =
+        project.objects.listProperty<Minimal.HeaderButton>().convention(listOf())
+
     override val footerCredit: Property<Boolean> = project.objects.property<Boolean>()
         .convention(true)
 
     override val markdownFile: RegularFileProperty = project.objects.fileProperty()
+
+    override val webpageMap: MapProperty<String, String> = project.objects.mapProperty<String, String>()
+        .convention(mapOf())
 
     override val outputDirectory: DirectoryProperty = project.objects.directoryProperty()
         .convention(project.layout.buildDirectory.dir("minimal"))
@@ -51,12 +57,6 @@ open class DefaultMinimal(project: Project) : Minimal {
     override fun webpage(fileName: String, rawSection: String) {
         webpageMap.put(fileName, rawSection)
     }
-
-    internal val headerButtons: ListProperty<Minimal.HeaderButton> =
-        project.objects.listProperty<Minimal.HeaderButton>().convention(listOf())
-
-    internal val webpageMap: MapProperty<String, String> = project.objects.mapProperty<String, String>()
-        .convention(mapOf())
 
     private inner class HeaderButtonsImpl : Minimal.HeaderButtonsScope {
         override fun button(line1: String, line2: String, url: String) {

@@ -1,6 +1,6 @@
-package com.hendraanggrian.website.minimal
+package com.hendraanggrian.pages.minimal
 
-import com.hendraanggrian.website.minimal.internal.DefaultMinimal
+import com.hendraanggrian.pages.minimal.internal.DefaultMinimal
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.ApplicationPlugin
@@ -15,7 +15,7 @@ open class MinimalPlugin : Plugin<Project> {
     companion object {
         const val PUBLISHING_GROUP = "publishing"
         const val DEPLOY_RESOURCES_TASK = "deployResources"
-        const val DEPLOY_WEBPAGES_TASK = "deployWebpages"
+        const val DEPLOY_PAGES_TASK = "deployPages"
     }
 
     override fun apply(project: Project) {
@@ -26,7 +26,7 @@ open class MinimalPlugin : Plugin<Project> {
             group = PUBLISHING_GROUP
             description = "Write images, styles and scripts directories for minimal website."
         }
-        val deployWebpages = project.tasks.register<DeployWebpagesTask>(DEPLOY_WEBPAGES_TASK) {
+        val deployWebpages = project.tasks.register<DeployPagesTask>(DEPLOY_PAGES_TASK) {
             group = PUBLISHING_GROUP
             description = "Write HTML files for minimal website."
             dependsOn(deployResources)
@@ -39,9 +39,7 @@ open class MinimalPlugin : Plugin<Project> {
                         .applicationName
                 )
             }
-            minimal as DefaultMinimal
             deployResources {
-                logo.set(minimal.logo)
                 accentColor.set(minimal.accentColor)
                 accentLightHoverColor.set(minimal.accentLightHoverColor)
                 accentDarkHoverColor.set(minimal.accentDarkHoverColor)
@@ -49,16 +47,17 @@ open class MinimalPlugin : Plugin<Project> {
                 headerButtonsSize.set(minimal.headerButtons.get().size)
             }
             deployWebpages {
+                icon.set(minimal.icon)
                 authorName.set(minimal.authorName)
                 authorUrl.set(minimal.authorUrl)
                 projectName.set(minimal.projectName)
                 projectDescription.set(minimal.projectDescription)
                 projectUrl.set(minimal.projectUrl)
+                headerButtons.set(minimal.headerButtons)
                 footerCredit.set(minimal.footerCredit)
                 markdownFile.set(minimal.markdownFile)
-                outputDirectory.set(minimal.outputDirectory)
-                headerButtons.set(minimal.headerButtons)
                 webpageMap.set(minimal.webpageMap)
+                outputDirectory.set(minimal.outputDirectory)
             }
         }
     }

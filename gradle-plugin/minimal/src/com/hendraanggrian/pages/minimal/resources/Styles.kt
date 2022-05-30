@@ -1,4 +1,4 @@
-package com.hendraanggrian.website.minimal.resources
+package com.hendraanggrian.pages.minimal.resources
 
 private const val HEADER_UL_WIDTH = 270
 

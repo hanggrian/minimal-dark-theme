@@ -1,26 +1,21 @@
-package com.hendraanggrian.website.minimal
+package com.hendraanggrian.pages.minimal
 
-import com.hendraanggrian.website.minimal.resources.dark_mode_svg
-import com.hendraanggrian.website.minimal.resources.getMainCss
-import com.hendraanggrian.website.minimal.resources.light_mode_svg
-import com.hendraanggrian.website.minimal.resources.pygment_trac_css
-import com.hendraanggrian.website.minimal.resources.scale_fix_js
-import com.hendraanggrian.website.minimal.resources.theme_js
+import com.hendraanggrian.pages.minimal.resources.dark_mode_svg
+import com.hendraanggrian.pages.minimal.resources.getMainCss
+import com.hendraanggrian.pages.minimal.resources.light_mode_svg
+import com.hendraanggrian.pages.minimal.resources.pygment_trac_css
+import com.hendraanggrian.pages.minimal.resources.scale_fix_js
+import com.hendraanggrian.pages.minimal.resources.theme_js
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
-import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
 import org.gradle.kotlin.dsl.property
 
 /** Task to run when `deployResources` command is executed. */
 open class DeployResourcesTask : DefaultTask(), DeployResourcesSpec {
-
-    @Optional
-    @Input
-    override val logo: Property<String> = project.objects.property()
 
     @Input
     override val accentColor: Property<String> = project.objects.property()
@@ -34,7 +29,10 @@ open class DeployResourcesTask : DefaultTask(), DeployResourcesSpec {
     @OutputDirectory
     override val outputDirectory: DirectoryProperty = project.objects.directoryProperty()
 
-    /** Determines the width of header button, capped at 3. */
+    /**
+     * Determines the width of header button, capped at 3.
+     * This value is automatically set when configuring [Minimal] extension.
+     */
     @Input
     val headerButtonsSize: Property<Int> = project.objects.property()
 

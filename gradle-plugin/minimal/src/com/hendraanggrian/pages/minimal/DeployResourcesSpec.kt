@@ -1,12 +1,9 @@
-package com.hendraanggrian.website.minimal
+package com.hendraanggrian.pages.minimal
 
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.provider.Property
 
 interface DeployResourcesSpec {
-
-    /** Optional website logo. */
-    val logo: Property<String>
 
     /**
      * Accent color of the webpage.

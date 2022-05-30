@@ -13,15 +13,16 @@ buildscript {
 group 'com.example'
 version '1.0'
 
-apply plugin: 'com.hendraanggrian.website.minimal'
+apply plugin: 'com.hendraanggrian.pages.minimal'
 apply plugin: 'org.ajoberstar.git-publish'
 
 minimal {
+    icon.set('images/my_icon.svg')
     authorName.set('Hendra Anggrian')
     authorUrl.set('https://github.com/hendraanggrian')
     projectDescription.set('This is an awesome example')
     projectUrl.set("https://github.com/hendraanggrian/minimal")
-    markdownFile.set(file('../../docs/README.md'))
+    markdownFile.set(file('Content.md'))
     headerButtons {
         button('Read', 'Documentation', 'documentation.html')
     }
@@ -31,8 +32,8 @@ minimal {
 gitPublish {
     repoUri.set('git@github.com:hendraanggrian/minimal-theme.git')
     branch.set('gh-pages')
-    contents.from('src', 'build/website')
+    contents.from('src', 'build/minimal')
 }
 
 tasks.register('clean') { delete(buildDir) }
-tasks.gitPublishCopy { dependsOn(deployWebpages) }
+tasks.gitPublishCopy { dependsOn(deployPages) }

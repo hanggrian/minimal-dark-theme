@@ -1,4 +1,4 @@
-package com.hendraanggrian.website
+package com.hendraanggrian.pages
 
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
@@ -11,7 +11,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class DeployWebpagesTaskTest {
+class DeployPagesTaskTest {
     @Rule @JvmField val testProjectDir = TemporaryFolder()
     private lateinit var buildFile: File
     private lateinit var runner: GradleRunner
@@ -36,12 +36,12 @@ class DeployWebpagesTaskTest {
         buildFile.writeText(
             """
             plugins {
-                id("com.hendraanggrian.website.minimal")
+                id("com.hendraanggrian.pages.minimal")
             }
             """.trimIndent()
         )
-        runner.withArguments("deployWebpages").build().let {
-            assertEquals(TaskOutcome.SUCCESS, it.task(":deployWebpages")!!.outcome)
+        runner.withArguments("deployPages").build().let {
+            assertEquals(TaskOutcome.SUCCESS, it.task(":deployPages")!!.outcome)
         }
         testProjectDir.root.resolve("build/minimal/index.html").readText().let {
             assertTrue("deploy-webpages-test" in it)
@@ -59,7 +59,7 @@ class DeployWebpagesTaskTest {
         buildFile.writeText(
             """
             plugins {
-                id("com.hendraanggrian.website.minimal")
+                id("com.hendraanggrian.pages.minimal")
             }
             minimal {
                 accentColor.set("#ff0000")
@@ -82,8 +82,8 @@ class DeployWebpagesTaskTest {
             }
             """.trimIndent()
         )
-        runner.withArguments("deployWebpages").build().let {
-            assertEquals(TaskOutcome.SUCCESS, it.task(":deployWebpages")!!.outcome)
+        runner.withArguments("deployPages").build().let {
+            assertEquals(TaskOutcome.SUCCESS, it.task(":deployPages")!!.outcome)
         }
         testProjectDir.root.resolve("build/custom-dir/index.html").readText().let {
             assertTrue("Cool Dude" in it)

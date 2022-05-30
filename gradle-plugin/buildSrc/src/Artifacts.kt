@@ -5,7 +5,7 @@ val Dependencies.`gradle-publish` get() = "com.gradle.publish:plugin-publish-plu
 val Plugins.`gradle-publish` get() = id("com.gradle.plugin-publish")
 
 const val VERSION_KOTLIN = "1.6.21"
-const val VERSION_COROUTINES = "1.6.1"
+const val VERSION_COROUTINES = "1.6.2"
 const val VERSION_HTML = "0.7.5"
 val Dependencies.dokka get() = "org.jetbrains.dokka:dokka-gradle-plugin:$VERSION_KOTLIN"
 val Plugins.dokka get() = id("org.jetbrains.dokka")
