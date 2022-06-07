@@ -15,7 +15,7 @@ import org.gradle.api.tasks.TaskAction
 import org.gradle.kotlin.dsl.property
 
 /** Task to run when `deployResources` command is executed. */
-open class DeployResourcesTask : DefaultTask(), DeployResourcesSpec {
+open class DeployResourcesTask : DefaultTask(), ResourcesDeployment {
 
     @Input
     override val accentColor: Property<String> = project.objects.property()
@@ -42,8 +42,12 @@ open class DeployResourcesTask : DefaultTask(), DeployResourcesSpec {
 
     @TaskAction
     fun deploy() {
-        logger.info("Writing static resources...")
-        writeToDir("images", "dark_mode.svg" to dark_mode_svg, "light_mode.svg" to light_mode_svg)
+        check(headerButtonsSize.get() <= 3) { "Header button size is capped at 3" }
+        writeToDir(
+            "images",
+            "dark_mode.svg" to dark_mode_svg,
+            "light_mode.svg" to light_mode_svg
+        )
         writeToDir(
             "styles",
             "main.css" to getMainCss(
@@ -52,11 +56,16 @@ open class DeployResourcesTask : DefaultTask(), DeployResourcesSpec {
             ),
             "pygment_trac.css" to pygment_trac_css
         )
-        writeToDir("scripts", "scale.fix.js" to scale_fix_js, "theme.js" to theme_js)
+        writeToDir(
+            "scripts",
+            "scale.fix.js" to scale_fix_js,
+            "theme.js" to theme_js
+        )
         logger.info("Done")
     }
 
     private fun writeToDir(directory: String, vararg contents: Pair<String, String>) {
+        logger.info("Writing '$directory'...")
         val targetDir = outputDirectory.asFile.get().resolve(directory)
         targetDir.mkdir()
         contents.forEach { targetDir.resolve(it.first).writeText(it.second) }

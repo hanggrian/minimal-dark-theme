@@ -13,21 +13,21 @@ import org.gradle.kotlin.dsl.register
 /** Gradle plugin to create minimalistic webpage. */
 open class MinimalPlugin : Plugin<Project> {
     companion object {
-        const val PUBLISHING_GROUP = "publishing"
-        const val DEPLOY_RESOURCES_TASK = "deployResources"
-        const val DEPLOY_PAGES_TASK = "deployPages"
+        const val GROUP = "publishing"
+        const val TASK_DEPLOY_RESOURCES = "deployResources"
+        const val TASK_DEPLOY_PAGES = "deployPages"
     }
 
     override fun apply(project: Project) {
         val hasApplicationPlugin = project.pluginManager.hasPlugin(ApplicationPlugin.APPLICATION_PLUGIN_NAME)
         val minimal = project.extensions.create(Minimal::class, "minimal", DefaultMinimal::class, project)
 
-        val deployResources = project.tasks.register<DeployResourcesTask>(DEPLOY_RESOURCES_TASK) {
-            group = PUBLISHING_GROUP
+        val deployResources = project.tasks.register<DeployResourcesTask>(TASK_DEPLOY_RESOURCES) {
+            group = GROUP
             description = "Write images, styles and scripts directories for minimal website."
         }
-        val deployWebpages = project.tasks.register<DeployPagesTask>(DEPLOY_PAGES_TASK) {
-            group = PUBLISHING_GROUP
+        val deployWebpages = project.tasks.register<DeployPagesTask>(TASK_DEPLOY_PAGES) {
+            group = GROUP
             description = "Write HTML files for minimal website."
             dependsOn(deployResources)
         }
@@ -40,24 +40,23 @@ open class MinimalPlugin : Plugin<Project> {
                 )
             }
             deployResources {
-                accentColor.set(minimal.accentColor)
-                accentLightHoverColor.set(minimal.accentLightHoverColor)
-                accentDarkHoverColor.set(minimal.accentDarkHoverColor)
-                outputDirectory.set(minimal.outputDirectory)
-                headerButtonsSize.set(minimal.headerButtons.get().size)
+                accentColor.convention(minimal.accentColor)
+                accentLightHoverColor.convention(minimal.accentLightHoverColor)
+                accentDarkHoverColor.convention(minimal.accentDarkHoverColor)
+                outputDirectory.convention(minimal.outputDirectory)
+                headerButtonsSize.convention(minimal.headerButtons.get().size)
             }
             deployWebpages {
-                icon.set(minimal.icon)
-                authorName.set(minimal.authorName)
-                authorUrl.set(minimal.authorUrl)
-                projectName.set(minimal.projectName)
-                projectDescription.set(minimal.projectDescription)
-                projectUrl.set(minimal.projectUrl)
-                headerButtons.set(minimal.headerButtons)
-                footerCredit.set(minimal.footerCredit)
-                markdownFile.set(minimal.markdownFile)
-                webpageMap.set(minimal.webpageMap)
-                outputDirectory.set(minimal.outputDirectory)
+                icon.convention(minimal.icon)
+                authorName.convention(minimal.authorName)
+                authorUrl.convention(minimal.authorUrl)
+                projectName.convention(minimal.projectName)
+                projectDescription.convention(minimal.projectDescription)
+                projectUrl.convention(minimal.projectUrl)
+                headerButtons.convention(minimal.headerButtons)
+                footerCredit.convention(minimal.footerCredit)
+                pagesMap.convention(minimal.pagesMap)
+                outputDirectory.convention(minimal.outputDirectory)
             }
         }
     }

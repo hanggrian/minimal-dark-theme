@@ -12,8 +12,7 @@ val Plugins.dokka get() = id("org.jetbrains.dokka")
 fun Dependencies.kotlinx(module: String, version: String? = null) =
     "org.jetbrains.kotlinx:kotlinx-$module${version?.let { ":$it" }.orEmpty()}"
 
-const val VERSION_COMMONMARK = "0.18.1"
-val Dependencies.commonmark get() = "org.commonmark:commonmark-ext-gfm-tables:$VERSION_COMMONMARK"
+val Dependencies.commonmark get() = "org.commonmark:commonmark-ext-gfm-tables:0.18.2"
 
-val Dependencies.`git-publish` get() = "org.ajoberstar:gradle-git-publish:3.0.0"
+val Dependencies.`git-publish` get() = "org.ajoberstar.git-publish:gradle-git-publish:3.0.1"
 val Plugins.`git-publish` get() = id("org.ajoberstar.git-publish")

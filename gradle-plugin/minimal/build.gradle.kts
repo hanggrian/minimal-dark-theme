@@ -2,34 +2,33 @@ group = RELEASE_GROUP
 version = RELEASE_VERSION
 
 plugins {
-    `java-gradle-plugin`
     `kotlin-dsl`
     dokka
     `gradle-publish`
 }
 
-sourceSets {
-    main {
-        java.srcDir("src")
-        resources.srcDir("res")
-    }
-    test {
-        java.srcDir("tests/src")
-        resources.srcDir("tests/res")
+kotlin {
+    jvmToolchain {
+        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(8))
     }
 }
 
 gradlePlugin {
     plugins.register("minimalPlugin") {
-        id = "$RELEASE_GROUP.minimal"
-        implementationClass = "$RELEASE_GROUP.minimal.MinimalPlugin"
+        id = "$RELEASE_GROUP.$RELEASE_ARTIFACT"
+        implementationClass = "$RELEASE_GROUP.$RELEASE_ARTIFACT.MinimalPlugin"
         displayName = "Minimal Theme Plugin"
         description = RELEASE_DESCRIPTION
     }
     testSourceSets(sourceSets.test.get())
 }
 
-ktlint()
+pluginBundle {
+    website = RELEASE_GITHUB
+    vcsUrl = "$RELEASE_GITHUB.git"
+    description = RELEASE_DESCRIPTION
+    tags = listOf("website", "github-pages")
+}
 
 dependencies {
     implementation(kotlin("stdlib", VERSION_KOTLIN))
@@ -46,9 +45,4 @@ tasks {
     }
 }
 
-pluginBundle {
-    website = RELEASE_GITHUB
-    vcsUrl = "$RELEASE_GITHUB.git"
-    description = RELEASE_DESCRIPTION
-    tags = listOf("website", "github-pages")
-}
+ktlint()

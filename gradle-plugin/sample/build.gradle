@@ -5,8 +5,8 @@ buildscript {
     dependencies {
         classpath files('minimal-0.1.jar')
         classpath 'org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.5'
-        classpath 'org.commonmark:commonmark-ext-gfm-tables:0.18.1'
-        classpath 'org.ajoberstar.git-publish:gradle-git-publish:4.1.0'
+        classpath 'org.commonmark:commonmark-ext-gfm-tables:0.18.2'
+        classpath 'org.ajoberstar.git-publish:gradle-git-publish:3.0.1'
     }
 }
 
@@ -22,11 +22,13 @@ minimal {
     authorUrl.set('https://github.com/hendraanggrian')
     projectDescription.set('This is an awesome example')
     projectUrl.set("https://github.com/hendraanggrian/minimal")
-    markdownFile.set(file('Content.md'))
     headerButtons {
         button('Read', 'Documentation', 'documentation.html')
     }
-    webpage('documentation.html', '<p>Welcome to project documentation.</p>')
+    pages {
+        index(file('Index.md'))
+        page('documentation.html', '<p>Welcome to project documentation.</p>')
+    }
 }
 
 gitPublish {

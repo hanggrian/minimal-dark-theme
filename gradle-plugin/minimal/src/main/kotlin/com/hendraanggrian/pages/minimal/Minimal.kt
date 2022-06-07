@@ -1,13 +1,47 @@
 package com.hendraanggrian.pages.minimal
 
+import org.gradle.api.Action
 import org.gradle.api.file.DirectoryProperty
-import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.MapProperty
 import org.gradle.api.provider.Property
+import java.io.Serializable
 
-interface DeployPagesSpec {
+interface Minimal : ResourcesDeployment, PagesDeployment {
+    /** Configures header buttons. Header buttons size is capped at 3. */
+    fun headerButtons(action: Action<HeaderButtonsScope>)
 
+    /** Configures webpages that will be generated. */
+    fun pages(action: Action<PagesScope>)
+}
+
+interface ResourcesDeployment {
+    /**
+     * Accent color of the webpage.
+     * Default is material color `Blue A200`.
+     */
+    val accentColor: Property<String>
+
+    /**
+     * Accent color of the webpage when hovered in light theme.
+     * Default is material color `Blue A200 Dark`.
+     */
+    val accentLightHoverColor: Property<String>
+
+    /**
+     * Accent color of the webpage when hovered in dark theme.
+     * Default is material color `Blue A200 Light`.
+     */
+    val accentDarkHoverColor: Property<String>
+
+    /**
+     * Output directory of this task.
+     * Default is `$projectDir/build/minimal`.
+     */
+    val outputDirectory: DirectoryProperty
+}
+
+interface PagesDeployment {
     /**
      * Optional relative path to website logo.
      * E.g. `images/icon.png`.
@@ -48,7 +82,7 @@ interface DeployPagesSpec {
      * Side-by-side header buttons, capped at 3.
      * @see Minimal.headerButtons
      */
-    val headerButtons: ListProperty<Minimal.HeaderButton>
+    val headerButtons: ListProperty<HeaderButton>
 
     /**
      * Small theme credit in footer.
@@ -57,16 +91,10 @@ interface DeployPagesSpec {
     val footerCredit: Property<Boolean>
 
     /**
-     * Markdown file which will be converted to `index.html` section.
-     * If empty, the whole section is blank.
+     * Webpages mapping.
+     * @see Minimal.pages
      */
-    val markdownFile: RegularFileProperty
-
-    /**
-     * Additional custom webpages.
-     * @see Minimal.webpage
-     */
-    val webpageMap: MapProperty<String, String>
+    val pagesMap: MapProperty<String, String>
 
     /**
      * Output directory of this task.
@@ -74,3 +102,11 @@ interface DeployPagesSpec {
      */
     val outputDirectory: DirectoryProperty
 }
+
+/**
+ * Header button data class.
+ * @param line1 first line of text.
+ * @param line2 second line of text, with stronger emphasis.
+ * @param url absolute or relative path to redirect to on button click.
+ */
+data class HeaderButton(val line1: String, val line2: String, val url: String) : Serializable
