@@ -24,10 +24,10 @@ help() {
 if ! command -v jq &> /dev/null; then fail 'jq is not installed'; fi
 if ! command -v pandoc &> /dev/null; then fail 'pandoc is not installed'; fi
 
-readonly ROOT_DIR="$(cd "$(dirname "$0")" && pwd)/.."
-readonly IMAGES_DIR="$ROOT_DIR/images"
-readonly SCRIPTS_DIR="$ROOT_DIR/scripts"
-readonly STYLES_DIR="$ROOT_DIR/styles"
+readonly ROOT_DIR="$(cd $(dirname "$0") && pwd)"
+readonly IMAGES_DIR="${ROOT_DIR}/images"
+readonly SCRIPTS_DIR="${ROOT_DIR}/scripts"
+readonly STYLES_DIR="${ROOT_DIR}/styles"
 input_github=
 output_directory=
 markdown_path=
@@ -92,9 +92,9 @@ echo 'writing...'
 if [[ "$clear_output" = true ]]; then
   rm -r "$output_directory"/*
 fi
-yes | cp -rf "$IMAGES_DIR" "$output_directory"
-yes | cp -rf "$SCRIPTS_DIR" "$output_directory"
-yes | cp -rf "$STYLES_DIR" "$output_directory"
+yes | cp -r "$IMAGES_DIR" "$output_directory"
+yes | cp -r "$SCRIPTS_DIR" "$output_directory"
+yes | cp -r "$STYLES_DIR" "$output_directory"
 
 {
 echo "<!doctype html>"
