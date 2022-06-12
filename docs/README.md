@@ -3,7 +3,7 @@
 Minimal Theme
 =============
 
-![](images/preview.png)
+![Preview](images/preview.png)
 
 A simple single page website theme with toggleable dark mode. Originally from [Minimal](https://github.com/orderedlist/minimal), this fork specializes in dark mode and generating webpages by command line or Gradle plugin.
 

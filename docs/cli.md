@@ -8,8 +8,8 @@ Requirements
 
 These executables must be installed and accessible from system environment.
 
-* [jq](https://stedolan.github.io/jq)
-* [Pandoc](https://pandoc.org)
+- [jq](https://stedolan.github.io/jq)
+- [Pandoc](https://pandoc.org)
 
 Options
 -------
