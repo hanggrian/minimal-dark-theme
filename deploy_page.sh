@@ -45,7 +45,7 @@ done
 while getopts 'i:o:m:h' flag; do
   case "$flag" in
     i) input_github="$OPTARG" ;;
-    o) output_directory="$OPTARG" ;;
+    o) output_directory="$OPTARG/" ;;
     m) markdown_path="$OPTARG" ;;
     h | *) help ;;
   esac
@@ -92,9 +92,9 @@ echo 'writing...'
 if [[ "$clear_output" = true ]]; then
   rm -r "$output_directory"/*
 fi
-yes | cp -r "$IMAGES_DIR" "$output_directory"
-yes | cp -r "$SCRIPTS_DIR" "$output_directory"
-yes | cp -r "$STYLES_DIR" "$output_directory"
+cp -r "$IMAGES_DIR" "$output_directory"
+cp -r "$SCRIPTS_DIR" "$output_directory"
+cp -r "$STYLES_DIR" "$output_directory"
 
 {
 echo "<!doctype html>"
@@ -140,7 +140,7 @@ echo "  <script src='scripts/scale.fix.js'></script>"
 echo "</body>"
 echo
 echo "</html>"
-} > "$output_directory/index.html"
+} > "${output_directory}index.html"
 
 echo 'done'
 echo
