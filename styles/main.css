@@ -25,7 +25,7 @@
 
   --border: #e0e0e0; /* Grey 300 */
 
-  --theme-toggle-image: 'dark_mode'; }
+  --theme-toggle-image: "dark_mode"; }
 
 :root.theme-dark {
   --background: #212121; /* Grey 900*/
@@ -51,12 +51,12 @@
 
   --border: #424242; /* Grey 800 */
 
-  --theme-toggle-image: 'light_mode'; }
+  --theme-toggle-image: "light_mode"; }
 
 body {
   background-color: var(--background);
   padding: 50px;
-  font: 14px/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   color: var(--text-body);
   font-weight: 400; }
 

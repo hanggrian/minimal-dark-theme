@@ -1,9 +1,0 @@
-os: linux
-language: minimal
-
-before_install:
-  - sudo apt-get -y install jq
-  - sudo apt-get -y install pandoc
-
-script:
-  - ./deploy_page.sh -i 'hendraanggrian/minimal-theme' -o "$TRAVIS_BUILD_DIR/test-output"
