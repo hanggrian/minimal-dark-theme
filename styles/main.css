@@ -85,16 +85,16 @@ h3, h4, h5, h6 {
 a {
   color: var(--accent);
   text-decoration: none; }
-a:hover {
-  color: var(--accent-hover); }
+  a:hover {
+    color: var(--accent-hover); }
 
 a small {
   font-size: 11px;
   color: var(--text-caption);
   margin-top: -0.3em;
   display: block; }
-a:hover small {
-  color: var(--text-caption-hover); }
+  a:hover small {
+    color: var(--text-caption-hover); }
 
 p small {
   color: var(--text-caption); }
@@ -108,8 +108,8 @@ blockquote {
   margin: 0;
   padding: 0 0 0 20px;
   font-style: italic; }
-blockquote p {
-  color: var(--text-caption); }
+  blockquote p {
+    color: var(--text-caption); }
 
 code, pre {
   font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, Consolas, Liberation Mono, DejaVu Sans Mono, Courier New, monospace;
@@ -125,8 +125,8 @@ pre {
   border-radius: 5px;
   border: 1px solid var(--code-border);
   overflow-x: auto; }
-pre code {
-  padding: 0px 0px; }
+  pre code {
+    padding: 0px 0px; }
 
 table {
   width: 100%;
@@ -152,44 +152,44 @@ header {
   float: left;
   position: fixed;
   -webkit-font-smoothing: subpixel-antialiased; }
-header ul {
-  list-style: none;
-  height: 40px;
-  padding: 0;
-  background: var(--button-background);
-  border-radius: 5px;
-  border: 1px solid var(--button-border);
-  width: 270px; }
-header ul a {
-  line-height: 1;
-  font-size: 11px;
-  color: var(--button-text1);
-  display: block;
-  text-align: center;
-  padding-top: 6px;
-  height: 34px; }
-header ul a:hover {
-  color: var(--button-text1-hover); }
-header ul a:active {
-  background-color: var(--button-background-active); }
-header ul a strong {
-  font-size: 14px;
-  display: block;
-  color: var(--button-text2); }
-header li {
-  width: 89px;
-  float: left;
-  border-right: 1px solid var(--button-border);
-  height: 40px; }
-header li:last-child {
-  border-right: 0px; }
-header li:first-child a {
-  border-radius: 5px 0 0 5px; }
-header li:last-child a {
-  border-radius: 0 5px 5px 0; }
-header ul li + li + li {
-  border-right: none;
-  width: 89px; }
+  header ul {
+    list-style: none;
+    height: 40px;
+    padding: 0;
+    background: var(--button-background);
+    border-radius: 5px;
+    border: 1px solid var(--button-border);
+    width: 270px; }
+    header ul a {
+      line-height: 1;
+      font-size: 11px;
+      color: var(--button-text1);
+      display: block;
+      text-align: center;
+      padding-top: 6px;
+      height: 34px; }
+      header ul a:hover {
+        color: var(--button-text1-hover); }
+      header ul a:active {
+        background-color: var(--button-background-active); }
+      header ul a strong {
+        font-size: 14px;
+        display: block;
+        color: var(--button-text2); }
+  header li {
+    width: 89px;
+    float: left;
+    border-right: 1px solid var(--button-border);
+    height: 40px; }
+    header li:last-child {
+      border-right: 0px; }
+    header li:first-child a {
+      border-radius: 5px 0 0 5px; }
+    header li:last-child a {
+      border-radius: 0 5px 5px 0; }
+  header ul li + li + li {
+    border-right: none;
+    width: 89px; }
 
 strong {
   color: var(--text-heavy);
@@ -215,20 +215,20 @@ footer {
   position: fixed;
   bottom: 50px;
   -webkit-font-smoothing: subpixel-antialiased; }
-footer button {
-  height: 40px;
-  padding: 0;
-  background: var(--button-background);
-  border-radius: 5px;
-  border: 1px solid var(--button-border);
-  width: 40px;
-  color: var(--button-text2);
-  justify-content: center;
-  cursor: pointer; }
-footer button:hover {
-  color: var(--button-text2-hover); }
-footer button:active {
-  background-color: var(--button-background-active); }
+  footer button {
+    height: 40px;
+    padding: 0;
+    background: var(--button-background);
+    border-radius: 5px;
+    border: 1px solid var(--button-border);
+    width: 40px;
+    color: var(--button-text2);
+    justify-content: center;
+    cursor: pointer; }
+    footer button:hover {
+      color: var(--button-text2-hover); }
+    footer button:active {
+      background-color: var(--button-background-active); }
 
 #theme-toggle:after {
   content: var(--theme-toggle-image); }
