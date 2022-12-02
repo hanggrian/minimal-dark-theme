@@ -21,5 +21,5 @@ Dark theme is embedded by default, simply click a button to toggle.
 
 ## Gradle Plugin
 
-Part of [Pages Gradle Plugin](https://github.com/hendraanggrian/pages-gradle-plugin/), a plugin that
-generates a website with this theme from existing markdown files.
+Part of [Pages Gradle Plugin](https://github.com/hendraanggrian/pages-gradle-plugin/),
+a plugin that generates a website with this theme from existing markdown files.
