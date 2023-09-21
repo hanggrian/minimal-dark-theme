@@ -8,8 +8,5 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.md]
+[*.{md,js}]
 max_line_length = 80
-
-[*.js]
-max_line_length = 100
