@@ -37,7 +37,7 @@
   --outline: #bdbdbd; /*Gray 400*/
   --outline-variant: #9e9e9e; /*Gray 500*/
 
-  --border: #424242; /*Gray 800*/
+  --border: #616161; /*Gray 700*/
   --button-text1: #bdbdbd; /*Gray 400*/
   --button-text1-hover: #8d8d8d; /*Gray 400 Light*/
   --button-text2: #fafafa; /*Gray 50*/
@@ -284,7 +284,6 @@ footer {
 }
 
 @media print, screen and (max-width: 960px) {
-
   div.wrapper {
     width: auto;
     margin: 0;
