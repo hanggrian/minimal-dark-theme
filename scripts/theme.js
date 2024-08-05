@@ -1,7 +1,10 @@
 const LOCAL_STORAGE_KEY = 'minimal-dark-mode';
 
 if (isDarkMode()) {
-  document.getElementsByTagName('html')[0].classList.add('theme-dark');
+  document
+      .getElementsByTagName('html')[0]
+      .classList
+      .add('theme-dark');
 }
 
 function isDarkMode() {
@@ -10,7 +13,10 @@ function isDarkMode() {
 }
 
 function toggleDarkMode() {
-  document.getElementsByTagName('html')[0].classList.toggle('theme-dark');
+  document
+      .getElementsByTagName('html')[0]
+      .classList
+      .toggle('theme-dark');
   const flippedDarkMode = !isDarkMode();
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(flippedDarkMode));
   return flippedDarkMode;

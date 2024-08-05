@@ -10,3 +10,6 @@ insert_final_newline = true
 
 [*.{md,js}]
 max_line_length = 80
+
+[*.js]
+ij_continuation_indent_size = 4
